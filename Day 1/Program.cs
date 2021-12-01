@@ -41,7 +41,7 @@ class Program
                 if (total > lastTotal) { count++; }
                 lastTotal = total;
             }
-            //move the values down the list gets ineffecient with o notation
+            //move the values down the list
             for (int i = 0; i < values.Length - 1; i++)
             {
                 values[i] = values[i + 1];
