@@ -4,7 +4,7 @@ using System.Linq;
 
 class Program
 {
-    static int getCountHigher(String[] lines) 
+    static int getIncrease(String[] lines) 
     {
         int count = 0;
         int? last = null;
@@ -19,12 +19,12 @@ class Program
         return count;
     }
 
-    static int getRollingHigher(String[] lines)
+    static int getRollingIncrease(String[] lines, int number)
     {
         int count = 0;
         int? lastTotal = null;
         int current, total;
-        int?[] values = {null, null, null};
+        int?[] values = new int?[number];
 
         foreach (var line in lines)
         {
@@ -41,7 +41,7 @@ class Program
                 if (total > lastTotal) { count++; }
                 lastTotal = total;
             }
-
+            //move the values down the list gets ineffecient with o notation
             for (int i = 0; i < values.Length - 1; i++)
             {
                 values[i] = values[i + 1];
@@ -54,7 +54,7 @@ class Program
     {
         String input = Directory.GetCurrentDirectory() + "\\input.txt"; //input files location
         var lines = File.ReadAllLines(input); //turns input into an array
-        Console.WriteLine("Amount of increases: " + getCountHigher(lines));
-        Console.WriteLine("Amount of rolling increases: " + getRollingHigher(lines));
+        Console.WriteLine("Amount of increases: " + getIncrease(lines));
+        Console.WriteLine("Amount of rolling increases: " + getRollingIncrease(lines, 3));
     }
 }
